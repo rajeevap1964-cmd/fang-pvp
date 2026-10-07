@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FANG.PVP — Enter the Arena</title>
+
+<meta name="description"
+content="FANG.PVP — a fast-paced Bloxd PvP experience. Fight, rank up, and become a FANG legend.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: #050507;
+    --panel: #0b0b0f;
+    --text: #f5f5f7;
+    --muted: #8e8e9a;
+    --red: #ff2848;
+    --line: rgba(255,255,255,.09);
+    --glow: rgba(255,40,72,.38);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .035;
+
+    background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,40,72,.10),
+            transparent 35%
+        );
+
+    z-index: -1;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6vw;
+
+    z-index: 50;
+
+    background: rgba(5,5,7,.65);
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+.navlinks {
+    display: flex;
+    gap: 28px;
+
+    color: #aaa;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.navlinks a {
+    transition: .25s;
+}
+
+.navlinks a:hover {
+    color: white;
+}
+
+.navplay {
+    padding: 11px 18px;
+
+    border: 1px solid rgba(255,40,72,.55);
+    border-radius: 10px;
+
+    background: rgba(255,40,72,.10);
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transition: .25s;
+}
+
+.navplay:hover {
+    background: var(--red);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 28px var(--glow);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    padding:
+        130px 20px
+        80px;
+
+    position: relative;
+}
+
+.hero-inner {
+    max-width: 1000px;
+}
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color: #bdbdc7;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    animation:
+        fadeUp .8s ease both;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+
+    background: var(--red);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px var(--red);
+
+    animation:
+        pulse 1.5s infinite;
+}
+
+h1 {
+    margin: 22px 0 18px;
+
+    font-size:
+        clamp(58px,11vw,142px);
+
+    line-height: .82;
+
+    letter-spacing: -.075em;
+
+    font-weight: 900;
+
+    animation:
+        fadeUp .8s .08s ease both;
+}
+
+h1 .accent {
+    color: var(--red);
+
+    text-shadow:
+        0 0 45px rgba(255,40,72,.28);
+}
+
+.hero p {
+    max-width: 640px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    animation:
+        fadeUp .8s .16s ease both;
+}
+
+.actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 32px;
+
+    animation:
+        fadeUp .8s .24s ease both;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    border:
+        1px solid var(--line);
+
+    border-radius: 12px;
+
+    padding:
+        14px 22px;
+
+    font-weight: 800;
+
+    font-size: 14px;
+
+    transition: .25s;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.btn.primary {
+    background: var(--red);
+
+    border-color: var(--red);
+
+    box-shadow:
+        0 0 35px rgba(255,40,72,.23);
+}
+
+.btn.primary:hover {
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    box-shadow:
+        0 0 50px rgba(255,40,72,.42);
+}
+
+.btn.secondary {
+    background:
+        rgba(255,255,255,.04);
+}
+
+.btn.secondary:hover {
+    background:
+        rgba(255,255,255,.09);
+
+    transform:
+        translateY(-3px);
+}
+
+.scroll {
+    margin-top: 65px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    animation:
+        bob 2s infinite;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding:
+        110px 6vw;
+}
+
+.container {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.section-head {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        end;
+
+    gap: 30px;
+
+    margin-bottom: 38px;
+}
+
+.kicker {
+    color: var(--red);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size:
+        clamp(34px,5vw,62px);
+
+    letter-spacing: -.055em;
+
+    line-height: 1;
+
+    margin-top: 8px;
+}
+
+.sub {
+    color: var(--muted);
+
+    max-width: 520px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.stat {
+    padding: 32px;
+
+    border-right:
+        1px solid var(--line);
+
+    text-align: center;
+}
+
+.stat:last-child {
+    border: 0;
+}
+
+.stat strong {
+    font-size: 38px;
+
+    display: block;
+
+    letter-spacing: -2px;
+}
+
+.stat span {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 16px;
+}
+
+.card {
+    min-height: 220px;
+
+    padding: 26px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.018)
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .35s;
+}
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -50px;
+    bottom: -50px;
+
+    background: var(--red);
+
+    filter:
+        blur(55px);
+
+    opacity: .12;
+}
+
+.card:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(255,40,72,.38);
+
+    box-shadow:
+        0 18px 60px rgba(0,0,0,.35);
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,40,72,.1);
+
+    border:
+        1px solid rgba(255,40,72,.2);
+
+    font-size: 20px;
+
+    margin-bottom: 22px;
+}
+
+.card h3 {
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+/* =========================
+   ARENA CTA
+========================= */
+
+.arena {
+    border:
+        1px solid rgba(255,40,72,.2);
+
+    border-radius: 24px;
+
+    padding:
+        65px 30px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,40,72,.12),
+            transparent 55%
+        ),
+        #09090d;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.arena::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -2px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 35%,
+            rgba(255,255,255,.08),
+            transparent 65%
+        );
+
+    transform:
+        translateX(-100%);
+
+    animation:
+        shine 5s infinite;
+}
+
+.arena p {
+    color: var(--muted);
+
+    max-width: 600px;
+
+    margin:
+        15px auto 28px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   RANKS
+========================= */
+
+.rankgrid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap: 10px;
+}
+
+.rank {
+    padding: 18px 10px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 14px;
+
+    background: #0a0a0e;
+
+    text-align: center;
+
+    transition: .25s;
+}
+
+.rank:hover {
+    border-color:
+        rgba(255,40,72,.4);
+
+    transform:
+        translateY(-4px);
+}
+
+.rank b {
+    display: block;
+
+    font-size: 13px;
+}
+
+.rank small {
+    color: #777;
+
+    font-size: 11px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding:
+        40px 6vw;
+
+    border-top:
+        1px solid var(--line);
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+.footerin {
+    max-width: 1180px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    gap: 20px;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(28px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform: none;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes pulse {
+
+    50% {
+        opacity: .35;
+        transform:
+            scale(.7);
+    }
+}
+
+@keyframes bob {
+
+    50% {
+        transform:
+            translateY(7px);
+    }
+}
+
+@keyframes shine {
+
+    0%,
+    65% {
+        transform:
+            translateX(-100%);
+    }
+
+    85%,
+    100% {
+        transform:
+            translateX(100%);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+    nav {
+        padding:
+            0 20px;
+    }
+
+    .navlinks {
+        display: none;
+    }
+
+    section {
+        padding:
+            80px 20px;
+    }
+
+    .hero {
+        padding-top:
+            120px;
+    }
+
+    .stats,
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: 0;
+
+        border-bottom:
+            1px solid var(--line);
+    }
+
+    .rankgrid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .section-head {
+        display: block;
+    }
+
+    .sub {
+        margin-top: 18px;
+    }
+
+    .actions {
+        flex-direction: column;
+
+        max-width: 280px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footerin {
+        display: block;
+    }
+
+    .footerin div + div {
+        margin-top: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="noise"></div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a class="logo" href="#">
+        FANG<span>.</span>PVP
+    </a>
+
+    <div class="navlinks">
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#ranks">
+            Ranks
+        </a>
+
+        <a href="#play">
+            Play
+        </a>
+
+    </div>
+
+    <a
+        class="navplay"
+        href="https://bloxd.io/play/classic_playerSchematic%7CYGEslecZeApXeXTbVLRw7?siteUsed=bloxd&lobby=1"
+        target="_blank"
+    >
+        PLAY NOW ↗
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="badge">
+
+            <span class="dot"></span>
+
+            BLOXD PVP EXPERIENCE
+
+        </div>
+
+
+        <h1>
+
+            FIGHT.<br>
+
+            <span class="accent">
+                DOMINATE.
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Welcome to FANG.PVP —
+            a fast-paced PvP arena built
+            for players who want to fight,
+            climb the ranks, and become a legend.
+
+        </p>
+
+
+        <div class="actions">
+
+            <a
+                class="btn primary"
+                href="https://bloxd.io/play/classic_playerSchematic%7CYGEslecZeApXeXTbVLRw7?siteUsed=bloxd&lobby=1"
+                target="_blank"
+            >
+
+                ⚔ PLAY FANG.PVP
+
+            </a>
+
+
+            <a
+                class="btn secondary"
+                href="#features"
+            >
+
+                EXPLORE THE GAME ↓
+
+            </a>
+
+        </div>
+
+
+        <div class="scroll">
+
+            Scroll to enter the arena
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section id="features">
+
+<div class="container reveal">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="kicker">
+                01 — THE ARENA
+            </div>
+
+            <h2>
+                Built for the fight.
+            </h2>
+
+        </div>
+
+
+        <p class="sub">
+
+            Pick your kit,
+            sharpen your skills,
+            earn Gold Coins,
+            and prove that you're
+            worthy of the FANG name.
+
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <article class="card">
+
+            <div class="icon">
+                ⚔
+            </div>
+
+            <h3>
+                Fast PvP
+            </h3>
+
+            <p>
+
+                Jump into combat and test
+                your movement, aim, combos,
+                and game sense against
+                other fighters.
+
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icon">
+                🛡
+            </div>
+
+            <h3>
+                Unique Kits
+            </h3>
+
+            <p>
+
+                Choose from specialized kits
+                designed for different playstyles —
+                speed, tank, assassin,
+                archer and more.
+
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icon">
+                👑
+            </div>
+
+            <h3>
+                Climb the Ranks
+            </h3>
+
+            <p>
+
+                Earn kills and rise through
+                the FANG hierarchy.
+                Every fight gets you closer
+                to the top.
+
+            </p>
+
+        </article>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RANKS
+========================= -->
+
+<section id="ranks">
+
+<div class="container reveal">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="kicker">
+                02 — PROGRESSION
+            </div>
+
+            <h2>
+                Earn your title.
+            </h2>
+
+        </div>
+
+
+        <p class="sub">
+
+            Your kills aren't just numbers.
+            They're your reputation.
+
+        </p>
+
+    </div>
+
+
+    <div class="rankgrid">
+
+        <div class="rank">
+
+            <b>
+                FIGHTER
+            </b>
+
+            <small>
+                10 Kills
+            </small>
+
+        </div>
+
+
+        <div class="rank">
+
+            <b>
+                WARRIOR
+            </b>
+
+            <small>
+                50 Kills
+            </small>
+
+        </div>
+
+
+        <div class="rank">
+
+            <b>
+                LEGEND
+            </b>
+
+            <small>
+                100 Kills
+            </small>
+
+        </div>
+
+
+        <div class="rank">
+
+            <b>
+                FANG GOD
+            </b>
+
+            <small>
+                500 Kills
+            </small>
+
+        </div>
+
+
+        <div class="rank">
+
+            <b>
+                FANG DEMON
+            </b>
+
+            <small>
+                1,000 Kills
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PLAY
+========================= -->
+
+<section id="play">
+
+<div class="container reveal">
+
+    <div class="arena">
+
+        <div class="kicker">
+            03 — READY?
+        </div>
+
+
+        <h2>
+            Enter the arena.
+        </h2>
+
+
+        <p>
+
+            Stop watching.
+            Start fighting.
+            FANG.PVP is waiting
+            for you on Bloxd.
+
+        </p>
+
+
+        <a
+            class="btn primary"
+            href="https://bloxd.io/play/classic_playerSchematic%7CYGEslecZeApXeXTbVLRw7?siteUsed=bloxd&lobby=1"
+            target="_blank"
+        >
+
+            PLAY NOW ↗
+
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="footerin">
+
+    <div>
+        © 2026 FANG.PVP — Built for fighters.
+    </div>
+
+    <div>
+        Powered by Bloxd
+    </div>
+
+</div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   PARTICLE BACKGROUND
+========================= */
+
+const canvas =
+    document.getElementById("particles");
+
+const ctx =
+    canvas.getContext("2d");
+
+let w;
+let h;
+
+let dpr =
+    Math.min(
+        devicePixelRatio || 1,
+        2
+    );
+
+let particles = [];
+
+
+function resize() {
+
+    w = innerWidth;
+    h = innerHeight;
+
+    canvas.width =
+        w * dpr;
+
+    canvas.height =
+        h * dpr;
+
+    canvas.style.width =
+        w + "px";
+
+    canvas.style.height =
+        h + "px";
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+}
+
+
+function makeParticles() {
+
+    particles =
+        Array.from(
+            {
+                length:
+                    Math.min(
+                        90,
+                        Math.floor(
+                            innerWidth / 14
+                        )
+                    )
+            },
+            () => ({
+
+                x:
+                    Math.random() * w,
+
+                y:
+                    Math.random() * h,
+
+                r:
+                    Math.random() * 1.6 + .3,
+
+                vx:
+                    (Math.random() - .5) * .18,
+
+                vy:
+                    -Math.random() * .28 - .04,
+
+                a:
+                    Math.random() * .5 + .1
+
+            })
+        );
+}
+
+
+function drawParticles() {
+
+    ctx.clearRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    for (const p of particles) {
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+
+        if (p.y < -10)
+            p.y = h + 10;
+
+        if (p.x < -10)
+            p.x = w + 10;
+
+        if (p.x > w + 10)
+            p.x = -10;
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.r,
+            0,
+            Math.PI * 2
+        );
+
+
+        ctx.fillStyle =
+            `rgba(
+                255,
+                70,
+                95,
+                ${p.a}
+            )`;
+
+        ctx.fill();
+
+    }
+
+
+    requestAnimationFrame(
+        drawParticles
+    );
+}
+
+
+addEventListener(
+    "resize",
+    () => {
+
+        resize();
+        makeParticles();
+
+    }
+);
+
+
+resize();
+
+makeParticles();
+
+drawParticles();
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("show");
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(
+        element =>
+            observer.observe(element)
+    );
+
+</script>
+
+</body>
+</html>
