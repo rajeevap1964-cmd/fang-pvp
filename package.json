@@ -1,0 +1,12 @@
+{
+  "name": "fang-pvp",
+  "version": "1.0.0",
+  "description": "FANG.PVP Bloxd game website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
